@@ -1,0 +1,48 @@
+/* Font size base
+======================================== */
+
+$base-font: 10px;
+
+/* Space size base
+======================================== */
+
+$base-space: 50px;
+
+/* Slick
+======================================== */
+
+$slick-loader-path: "/vendors/images/";
+
+/* Colors
+======================================== */
+
+
+$white-color:                       #ffffff!default;
+$text-color:                        #353535!default;
+$primaryColor:                        #820e17!default;
+$secondaryColor:                      #9a7f82!default;
+$grey-border-navbar:                  #f0f0f0!default;
+
+$grey-text-color:                     #909090 !default;
+
+$fa-font-path:                        "/vendors/fonts" !default;
+
+$font-family-base:                    "Open Sans", sans-serif;
+$font-family-secondary:                "Open Sans", sans-serif;
+
+$transition-default:                  cubic-bezier(.45, .06, .15, 1) !default;
+
+$social-facebook:                     #3b5998 !default;
+$social-twitter:                      #1da1f2 !default;
+$social-gplus:                        #dd4b39 !default;
+$social-linkedin:                     #0077b5 !default;
+$social-instagram:                    #262626 !default;
+$social-youtube:                      #ff0000 !default;
+$social-pinterest:                    #bd081c !default;
+
+/*** Lightgallery
+***********************************************************************************************************************/
+$lg-path-fonts:                      "/vendors/fonts";
+$lg-path-images:                     "/vendors/images";
+
+$lg-toolbar-bg:                      rgba($primaryColor, 0.45) !default;

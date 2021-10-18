@@ -1,0 +1,19 @@
+{% macro contents(section) %}
+  {% for content in section %}
+    {%if content.template %}
+        {% set file = 'elements/' + content.template %}
+         <!--template file : {{file}}-->
+        {% include file %}
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro sitemap(nav) %}
+    <ul>
+    {% for child in nav.children %}
+        <li><a href="{{ child.url }}">{{ child.navTitle }}</a>
+            {{ sitemap(child) }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endmacro %}

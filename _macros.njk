@@ -1,0 +1,65 @@
+{% macro contents(section) %}
+    {% for content in section %}
+        {%if content.template %}
+            {% set file = 'elements/' + content.template %}
+            <!--template file : {{file}}-->
+            {% include file %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro base() %}https://sturm.lu{% endmacro %}
+
+
+{% macro sitemapvar(nav) %}
+<ul class="">
+    {% for child in nav.children %}
+    <li class=""><a href="{{ child.url }}">{{ child.navTitle }}</a>
+        {{ sitemap(child) }}
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro menu(nav, level = 1) %}
+<ul class="menu-list">
+    {% for child in nav.children %}
+    <li class="list-item list-item-menu {% if (child.children|length and level == 1) %}dropdown{% endif %}">
+        <a class="nav-link {{ " active" if child.active }}"
+        href="{{ child.url }}" {% if child.navType == 'link' %}target="_blank" {% endif %}>
+        {% if child.custom.navsvg %}
+        {{ child.custom.navsvg | safe }}
+        {% endif %}
+        {{ child.navTitle }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro error(form, field) %}
+{% if (form[field].errors) %}
+
+<div class="card-alerts   small danger">
+    <i class="fa fa-exclamation-triangle"></i>
+    <h3>Warning!</h3>
+    <p>{% for error, message in form[field].errors %}{{ message }}</br>{% endfor %}</p>
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro menuLeft(nav, level = 1) %}
+<ul class="nav flex-column">
+    {% for child in nav.children %}
+    {% if (level == 1 and child.active) %}
+    {{ menuLeft(child, level + 1) }}
+    {% endif %}
+    {% if (level>1 and nav.active) %}
+    <li class="nav-item {{ " active
+    " if child.active }}"><a class="nav-link js-site--fade" href="{{ child.url }}">{{ child.navTitle }}</a>
+    {{ menuLeft(child, level + 1) }}
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endmacro %}

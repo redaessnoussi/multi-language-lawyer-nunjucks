@@ -1,0 +1,93 @@
+<!doctype html>
+{% import "../_macros.njk" as macro %}
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {% block title %}
+        <title>{{ page.title }}</title>
+    {% endblock %}
+    <meta name="description" content="{{ page.description }}">
+    <meta name="keywords" content="{{ page.metas.keywords }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div id="main-content">
+    <header class="header">
+        <div class="container">
+            <div class="w-100 d-flex justify-content-between align-items-center">
+                <a class="navbar-brand p-0 mr-0 lh-0 d-none d-xl-block"
+                   title="{{ _("Retour à la page d'accueil") }}"@
+                   href="/" rel="home">
+                    <img src="/images/logo.png" alt="Logo"/>
+                </a>
+
+                <div class="wrapper-nav-main">
+                    <div class="header-top d-none d-xl-block">
+                        <nav class="navbar-top">
+                            <ul class="navbar flex-sm-row justify-content-end list-unstyled p-0 m-0 js-navbar-width">
+                                {{ macro.menu(sitemap.menutop, 1) }}
+                            </ul>
+                        </nav>
+                    </div>
+                    <hr class="d-none d-xl-block" />
+                    <div class="header-main zindex-10 w-100 js-header-main bg-color-white">
+                        <div class="wrapper-nav-large d-flex align-items-center align-items-xl-start justify-content-between">
+                            <a class="navbar-brand p-0 mr-0 lh-0 d-block d-xl-none"
+                               title="{{ _("Retour à la page d'accueil") }}"@
+                               href="/" rel="home">
+                                <img src="/images/logo.png" alt="Logo"/>
+                            </a>
+
+                            <div class="d-flex justify-content-end align-items-center">
+                                <nav class="navbar-main d-none d-xl-block">
+                                    {% if sitemap.main %}
+                                        <ul class="navbar flex-sm-row list-unstyled p-0 m-0 js-navbar-width">
+                                            {{ macro.menu(sitemap.main, 1) }}
+                                        </ul>
+                                    {% endif %}
+                                </nav>
+
+                                <div class="navbar-right d-flex align-items-center zindex-1">
+                                    {#                                <div>#}
+                                    {#                                    <i class="fal fa-search"></i>#}
+                                    {#                                </div>#}
+                                    <button class="d-block d-xl-none burger-nav-button bg-transparent overflow-hidden c-pointer js-burger-nav-button ml-50"
+                                            type="button">
+                                        <ul class="burger-nav-bars position-absolute list-unstyled w-100 h-100 mb-0">
+                                            <li class="burger-nav-bar top position-absolute bg-color-grey-text"></li>
+                                            <li class="burger-nav-bar center position-absolute bg-color-grey-text"></li>
+                                            <li class="burger-nav-bar bottom position-absolute bg-color-grey-text"></li>
+                                        </ul>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header><!-- .header -->
+
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
+            href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        Footer
+    </footer>
+</div>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

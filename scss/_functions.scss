@@ -1,0 +1,7 @@
+/*** Convert px to rem
+***********************************************************************************************************************/
+$browser-context: 10; // Default
+
+@function px-to-rem($size) {
+  @return ($size / $browser-context) + rem;
+}
