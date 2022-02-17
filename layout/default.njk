@@ -1,15 +1,30 @@
 {% extends "layout/layout.njk" %}
 {% import "../_macros.njk" as macro %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-12 content-default">
-                <h1>{{ page.title }}</h1>
-                <div class="content-default-wrapper">
-                    {{ macro.contents(page.contents['row1']) }}
-                </div>
+{# <pre>{{ page | dump('\t') }}</pre> #}
+{# <pre>{{sitemap | dump('\t') }}</pre> #}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-12 content-default">
+            <div class="content-default-wrapper">
+                {{ macro.contents(page.contents['row1']) }}
             </div>
         </div>
     </div>
-{% endblock %}
+</div>
 
+<div class="container my-5">
+    <div class="row justify-content-between">
+        <div class="col-md-7">
+            {{ macro.contents(page.contents['row1.col1']) }}
+        </div>
+        <div class="col-md-4">
+            {{ macro.contents(page.contents['row1.col2']) }}
+
+            {{ macro.contents(page.contents['row2.col2']) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+// primary color for card
+.card-primary{
+  border: 0!important;
+  .card-header{
+    background-color: $primaryColor;
+  }
+}

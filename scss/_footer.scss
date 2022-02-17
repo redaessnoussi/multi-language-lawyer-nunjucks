@@ -1,0 +1,15 @@
+// added backgorund primary for footer
+footer{
+  background-color: $primaryColor;
+  a{
+    color: $white-color!important;
+  }
+  .bg-secondary{
+    background-color: $secondaryColor!important;
+  }
+
+  .hr-custom{
+    height: 3px;
+    border-radius: 10px;
+  }
+}

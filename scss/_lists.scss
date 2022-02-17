@@ -1,0 +1,37 @@
+// menu list with icon
+.list-custom{
+  .list-group-item:before {
+    content: url('../images/arrow-right.svg');
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    line-height: 75px;
+    text-align: center;
+  }
+  
+  .list-group-item {
+    border: 0;
+    padding: 20px 0 0 60px;
+    a{
+      color: $black!important;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.list-primary{
+  padding-left: 48px!important;
+  li{
+    margin-bottom: 5px;
+    font-weight: bolder;
+    &::marker{
+      color: $primaryColor;
+    }
+  }
+}

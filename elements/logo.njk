@@ -1,0 +1,14 @@
+{% import "../_macros.njk" as macro %}
+
+{# <pre style="color:white;">{{ content | dump('\t') }}</pre> #}
+
+{% for event in content.custom.events %}
+<a class="navbar-brand" title="{{ _("Accueil") }}" @ href="/" rel="home">
+  {% if event.logoimg[0].url %}
+  <img src="{{event.logoimg[0].url}}" alt="logo" width="{{event.logowidth}}" height="{{event.logoheight}}" />
+  {% else %}
+  <h1>{{event.headline}}</h1>
+  {% endif %}
+
+</a>
+{% endfor %}

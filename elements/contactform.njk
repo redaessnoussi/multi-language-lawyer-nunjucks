@@ -1,0 +1,65 @@
+{% import "../_macros.njk" as macro %}
+
+{# <pre>{{ content | dump('\t') }}</pre> #}
+
+
+
+<div class="card card-primary rounded-0">
+  <div class="card-header rounded-0 text-white">
+    <h3 class="mb-0">{{ content.custom.title }}</h3>
+  </div>
+  <div class="card-body">
+    <form id="contactForm" name="sentMessage" method="POST">
+      {# <pre style="color:red">
+          FORM :
+          {{ content.form | dump('\t') }}
+          REQUEST :
+          {{ request | dump('\t') }}
+      </pre> #}
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="fname" class="form-label">{{ _("Prénom") }} *</label>
+          <input type="text" class="form-control rounded-0" name="fname" value="{{ request.body.fname }}"
+            placeholder="Enter your first name...">
+          {{ macro.error(content.form, 'fname') }}
+        </div>
+        <div class="col-md-6">
+          <label for="lname" class="form-label">{{ _("Nom") }} *</label>
+          <input type="text" class="form-control rounded-0" name="lname" value="{{ request.body.lname }}"
+            placeholder="Enter your last name...">
+          {{ macro.error(content.form, 'lname') }}
+        </div>
+        <div class="col-md-6">
+          <label for="company" class="form-label">{{ _("Société") }}</label>
+          <input type="text" class="form-control rounded-0" name="company" value="{{ request.body.company }}"
+            placeholder="Company Name...">
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="phone" class="form-label">{{ _("Tél") }} *</label>
+          <input type="tel" class="form-control rounded-0" name="phone" value="{{ request.body.phone }}"
+            placeholder="01-23-45-63-78">
+          {{ macro.error(content.form, 'phone') }}
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">{{ _("E-mail") }} *</label>
+          <input type="email" class="form-control rounded-0" name="email" value="{{ request.body.email }}"
+            placeholder="john@email.com">
+          {{ macro.error(content.form, 'email') }}
+        </div>
+        <div class="col-12">
+          <label for="comment" class="form-label">{{ _("Remarque") }} *</label>
+          <textarea class="form-control rounded-0" placeholder="Leave a comment here" name="message"
+            value="{{ request.body.message }}"></textarea>
+          {{ macro.error(content.form, 'message') }}
+        </div>
+        <div class="col-12">
+          <div id="success"></div>
+          <button type="submit" id="sendMessageButton" class="btn btn-primary px-5 py-2 rounded-0" name="form"
+            value="{{ content.id }}">{{ _("Envoyer") }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

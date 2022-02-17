@@ -10,23 +10,12 @@
 
 {% macro base() %}https://sturm.lu{% endmacro %}
 
-
-{% macro sitemapvar(nav) %}
-<ul class="">
+{# Menu Navbar Top #}
+{% macro menuDesktop(nav, level = 1) %}
     {% for child in nav.children %}
-    <li class=""><a href="{{ child.url }}">{{ child.navTitle }}</a>
-        {{ sitemap(child) }}
-    </li>
-    {% endfor %}
-</ul>
-{% endmacro %}
-
-{% macro menu(nav, level = 1) %}
-<ul class="menu-list">
-    {% for child in nav.children %}
-    <li class="list-item list-item-menu {% if (child.children|length and level == 1) %}dropdown{% endif %}">
-        <a class="nav-link {{ " active" if child.active }}"
-        href="{{ child.url }}" {% if child.navType == 'link' %}target="_blank" {% endif %}>
+    <li>
+        <a class="nav-link {{ "active" if child.active }}"
+        href="{{ child.url }}" {% if child.navType == 'link' %} target="_blank" {% endif %}>
         {% if child.custom.navsvg %}
         {{ child.custom.navsvg | safe }}
         {% endif %}
@@ -34,32 +23,25 @@
         </a>
     </li>
     {% endfor %}
-</ul>
 {% endmacro %}
 
-{% macro error(form, field) %}
-{% if (form[field].errors) %}
 
-<div class="card-alerts   small danger">
-    <i class="fa fa-exclamation-triangle"></i>
-    <h3>Warning!</h3>
-    <p>{% for error, message in form[field].errors %}{{ message }}</br>{% endfor %}</p>
-</div>
-{% endif %}
-{% endmacro %}
-
-{% macro menuLeft(nav, level = 1) %}
-<ul class="nav flex-column">
+{# Footer Pages Links #}
+{% macro menuFooter(nav, level = 1) %}
+<ul class="list-unstyled mb-0">
     {% for child in nav.children %}
-    {% if (level == 1 and child.active) %}
-    {{ menuLeft(child, level + 1) }}
-    {% endif %}
-    {% if (level>1 and nav.active) %}
-    <li class="nav-item {{ " active
-    " if child.active }}"><a class="nav-link js-site--fade" href="{{ child.url }}">{{ child.navTitle }}</a>
-    {{ menuLeft(child, level + 1) }}
-    </li>
-    {% endif %}
+        <li class="mb-2"><a href="{{ child.url }}">{{ child.navTitle }}</a></li>
     {% endfor %}
 </ul>
+{% endmacro %}
+
+{# Contact Form Macro #}
+{% macro error(form, field) %}
+{% if (form[field].errors) %}
+<p class="help-block text-danger mb-0">
+    {% for error, message in form[field].errors %}
+    {{ message }}</br>
+    {% endfor %}
+</p>
+{% endif %}
 {% endmacro %}

@@ -1,0 +1,36 @@
+// language navigation menu
+.nav-language{
+  .nav-link{
+    color: rgba(255, 255, 255, 0.5)!important;
+  }
+  .nav-link.active{
+    color: $white-color!important;
+    font-weight: bold;
+  }
+}
+
+// top navigation menu
+.navbar.navbar-dark{
+  li{
+    height: 44px;
+  }
+  .nav-link{
+    padding: 1rem 1rem 1rem 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.5)!important;
+    @include media-breakpoint-up(md){
+      &.active, &:hover{
+        border-bottom: solid 3px $white-color;
+      }
+    }
+  }
+  @include media-breakpoint-up(md){
+    .nav-link{
+      padding: 0.5rem 1rem;
+    }
+  }
+  .nav-link.active{
+    color: $white-color!important;
+    font-weight: bold;
+  }
+}

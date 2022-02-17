@@ -1,0 +1,13 @@
+{% import "../_macros.njk" as macro %}
+
+{# variables - About us #}
+{% set image = content.custom.image[0].url %}
+{% set about = content.custom.about %}
+
+{# <pre>{{ content | dump('\t') }}</pre> #}
+
+<div class="mb-3 text-center">
+  <img src="{{image}}" alt="immeuble" class="img-fluid">
+</div>
+
+{{about | safe}}

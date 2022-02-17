@@ -1,0 +1,63 @@
+{% import "../_macros.njk" as macro %}
+
+{# <pre>{{  macro.menu(sitemap.main, 1) | dump('\t') }}</pre> #}
+
+
+{# <pre>{{ content | dump('\t') }}</pre> #}
+
+{# <pre>
+  {{ content | dump('\t') }}
+  {% for event in content.custom.events %}
+    <li>{{ url('teaminfo', {teaminfo:event.slug}) }}</li>
+  {% endfor %}
+</pre> #}
+
+{# {% for event in content.custom.events %}
+    <li>{{event.}}</li>
+  {% endfor %} #}
+
+{# <pre>{{ content.custom.title.slug | dump('\t') }}</pre> #}
+
+{# <pre>{{ locales | dump('\t') }}</pre> #}
+{# <pre>
+  {{ locales | dump('\t') }}
+  {% for locale in locales %}
+    {% if locale.current and locale.name == 'Deutsch' %}
+      <li>Bingo</li>
+    {% endif %}
+  {% endfor %}
+</pre> #}
+{% for event in content.custom.events %}
+<div class="col-md-4 text-center mb-5">
+  <img src="{{ event.image[0].versions.main.resolutions.md.url }}" class="rounded-circle img-fit" width="160"
+    height="160" alt="team-1">
+  {% for locale in locales %}
+  {% if locale.current and locale.name == 'Français' %}
+  <p class="small font-weight-bolder my-3">Né le {{ event.birthdate}} à {{ event.birthcity }}</p>
+  {% endif %}
+  {% if locale.current and locale.name == 'English' %}
+  <p class="small font-weight-bolder my-3">Born {{ event.birthdate}} in {{ event.birthcity }}</p>
+  {% endif %}
+  {% if locale.current and locale.name == 'Deutsch' %}
+  <p class="small font-weight-bolder my-3">Geboren am {{ event.birthdate}} in {{ event.birthcity }}</p>
+  {% endif %}
+  {% endfor %}
+  <h3 class="text-primary">{{event.name}}</h3>
+  <ul class="list-primary text-start">
+    {% for career in event.team %}
+    <li> {{ career.name }} </li>
+    {% endfor %}
+  </ul>
+  <div class="d-flex align-items-center">
+    <div class="flex-shrink-0">
+      <span class="badge bg-primary p-2 rounded-circle">
+        <img src="/images/info.svg" alt="info">
+      </span>
+    </div>
+    <div class="flex-grow-1 ms-2 text-start">
+      <a href="{{ url('teaminfo', {teaminfo:event.slug}) }}"
+        class="text-primary font-weight-bolder">{{ _("En savoir plus") }}</a>
+    </div>
+  </div>
+</div>
+{% endfor %}

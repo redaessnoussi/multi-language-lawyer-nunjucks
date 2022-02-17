@@ -1,0 +1,23 @@
+{% import "../_macros.njk" as macro %}
+
+{# variables - contact info #}
+{% set title = content.custom.title %}
+
+{# <pre>{{ content | dump('\t') }}</pre> #}
+
+<div class="card card-primary rounded-0 mb-5">
+  <div class="border-0 card-header rounded-0 text-white">
+    <h3 class="mb-0">{{title}}</h3>
+  </div>
+  <div class="card-body p-0">
+    <ul class="list-unstyled list-custom mb-0">
+      {% for event in content.custom.events %}
+      <li class="list-group-item">
+        <a href="#" target="_blank">
+          {{event.activity}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

@@ -1,9 +1,18 @@
-@import
-"reset",
-"variables",
-"../node_modules/bootstrap/scss/bootstrap",
-"mixins",
-"functions",
-"header",
-"textimg",
-"footer";
+@import "reset";
+@import "variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "mixins";
+@import "functions";
+@import "header";
+@import "textimg";
+@import "cards";
+@import "buttons";
+@import "footer";
+@import "lists";
+@import "images";
+@import "typography";
+@import "helpers";
+@import "forms";
+@import "navs";
+@import "helpers"
+// @import "footer";

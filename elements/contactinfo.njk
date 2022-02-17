@@ -1,0 +1,78 @@
+{% import "../_macros.njk" as macro %}
+
+
+{# variables - contact info #}
+{% set title = content.custom.title %}
+{% set subtitle = content.custom.events[0].subtitle %}
+{% set fax = content.custom.events[0].fax %}
+{% set email = content.custom.events[0].email %}
+{% set phone = content.custom.events[0].phone %}
+{% set address = content.custom.events[0].address %}
+
+{# <pre>{{ content | dump('\t') }}</pre> #}
+{# <pre>{{ dump('\t') }}</pre> #}
+
+<div class="card card-primary rounded-0">
+  <div class="card-header rounded-0 text-white">
+    <h3 class="mb-0">{{title}}</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="mb-3">{{subtitle}}</h5>
+    {% if address %}
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z">
+          </path>
+        </svg>
+      </div>
+      <div class="flex-grow-1 mb-3 ms-3 text-start">
+        <p class="mb-0">{{address}}</p>
+      </div>
+    </div>
+    {% endif %}
+    {% if phone %}
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z">
+          </path>
+        </svg>
+      </div>
+      <div class="flex-grow-1 mb-3 ms-3 text-start">
+        <p class="mb-0"><b>Tél. :</b> {{phone}}</p>
+      </div>
+    </div>
+    {% endif %}
+    {% if fax %}
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M13.693 10.812l1.306 2.452-.928.492c-2.506 1.238-6.783-6.771-4.346-8.141l.936-.499 1.307 2.455-.926.493c-.734.427.974 3.633 1.727 3.238l.924-.49zm10.307.188v12h-24v-12h4v-10h10.328c1.538 0 5.672 4.852 5.672 6.031v3.969h4zm-18 5h12v-8.396c0-1.338-2.281-1.494-3.25-1.229.453-.813.305-3.375-1.082-3.375h-7.668v13zm16-3h-2v5h-16v-5h-2v8h20v-8z">
+          </path>
+        </svg>
+      </div>
+      <div class="flex-grow-1 mb-3 ms-3 text-start">
+        <p class="mb-0"><b>Fax. :</b> {{fax}}</p>
+      </div>
+    </div>
+    {% endif %}
+    {% if email %}
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z">
+          </path>
+        </svg>
+      </div>
+      <div class="flex-grow-1 ms-3 text-start">
+        <p class="mb-0"><b>E-mail: <a href="mailto:{{email}}">{{email}}</a></b></p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>

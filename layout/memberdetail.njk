@@ -1,0 +1,53 @@
+{% extends "layout/layout.njk" %}
+
+{% set member =  page.contents["row1.col1"][0].custom.events[0] %}
+
+{% block title %}
+<title>{{ member.name }}</title>
+{% endblock %}
+
+
+{% block content %}
+
+{# <pre>{{ member | dump('\t') }}</pre> #}
+
+<div class="container-fluid page-title text-white text-center py-5">
+  <h1 class="mb-0">{{ member.name }}</h1>
+</div>
+<div class="container py-5">
+  <div class="row justify-content-between">
+    <div class="col-md-8">
+      <img src="{{member.image[0].url}}" alt="image" class="img-fluid">
+      <div class="row justify-content-end mt-md--50 mt-4">
+        <div class="col-md-10">
+          <div class="card rounded-0">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-between mb-3">
+                <div class="col-md-auto me-4">
+                  <h2 class="card-title">{{ _("Détails") }}</h2>
+                </div>
+                <div class="col-md-auto d-flex align-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="me-2">
+                    <path
+                      d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z">
+                    </path>
+                  </svg>
+                  <h6 class="mb-0">
+                    {{ _("Contact") }}: <a href="mailto:{{member.email}}">{{member.email}}</a></h6>
+                </div>
+              </div>
+              <div class="card-text">
+                {{member.description | safe}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      {{ macro.contents(page.contents['row1.col2']) }}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

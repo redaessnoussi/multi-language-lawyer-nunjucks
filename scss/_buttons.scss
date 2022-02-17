@@ -1,0 +1,19 @@
+// added primary background for btn
+.btn-primary{
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  &:hover{
+    background-color: rgba($primaryColor, 0.8);
+    border-color: $primaryColor
+  }
+}
+
+// added secondary background for btn
+.btn-secondary{
+  background-color: $secondaryColor;
+  border-color: $secondaryColor;
+  &:hover{
+    background-color: rgba($secondaryColor, 0.8);
+    border-color: $secondaryColor
+  }
+}

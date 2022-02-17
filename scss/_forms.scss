@@ -1,0 +1,9 @@
+// border with primary for form control
+.form-control{
+  border: 1px solid $primaryColor!important;
+}
+
+// bold input labels
+.form-label{
+  font-weight: bolder;
+}

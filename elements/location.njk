@@ -1,0 +1,38 @@
+{% import "../_macros.njk" as macro %}
+
+{# variables - location info #}
+{% set image = content.custom.image[0].url %}
+{% set title = content.custom.title %}
+{% set postal = content.custom.postal %}
+{% set address = content.custom.address %}
+{% set tel = content.custom.tel %}
+{% set fax = content.custom.fax %}
+{% set email = content.custom.email %}
+
+{# <pre>{{ content | dump('\t') }}</pre> #}
+
+<div class="card card-primary rounded-0">
+  <div class="card-header rounded-0 text-white">
+    <h3 class="mb-0">{{title}}</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5 class="card-title">{{title}}</h5>
+        <ul class="list-unstyled">
+          <li class="mb-3">{{address}}</li>
+          <li><b>Tél. :</b> {{tel}}</li>
+          <li><b>Fax. :</b> {{fax}}</li>
+        </ul>
+        <ul class="list-unstyled mb-md-0">
+          <li><b>Adresse postale:</b> {{postal}}</li>
+          <li><b>E-mail :</b> {{email}}</li>
+          <li><b>Plan d'accès :</b> accéder</li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <img src="{{image}}" alt="immeuble" class="img-fluid img-thumbnail">
+      </div>
+    </div>
+  </div>
+</div>

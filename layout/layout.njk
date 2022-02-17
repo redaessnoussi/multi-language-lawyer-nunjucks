@@ -1,93 +1,137 @@
 <!doctype html>
 {% import "../_macros.njk" as macro %}
 <html class="no-js" lang="">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     {% block title %}
-        <title>{{ page.title }}</title>
+    <title>{{ page.title }}</title>
     {% endblock %}
-    <meta name="description" content="{{ page.description }}">
+    <meta name="description" content="{{ page.metas.description }}">
     <meta name="keywords" content="{{ page.metas.keywords }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="/css/main.css">
 </head>
+
+{# variables declaration  #}
+{% set logo = page.contents['header.row1'][0].custom.events[0].logoimg[0].url %}
+{% set headline = page.contents['header.row1'][0].custom.events[0].headline %}
+
+{% set contactHeader = page.contents['footer.row1.col3'][0].custom.title %}
+{% set contactAddress = page.contents['footer.row1.col3'][0].custom.events[0].address %}
+{% set contactPhone = page.contents['footer.row1.col3'][0].custom.events[0].phone %}
+{% set contactFax = page.contents['footer.row1.col3'][0].custom.events[0].fax %}
+{% set contactEmail = page.contents['footer.row1.col3'][0].custom.events[0].email %}
+
+
 <body>
-<div id="main-content">
-    <header class="header">
-        <div class="container">
-            <div class="w-100 d-flex justify-content-between align-items-center">
-                <a class="navbar-brand p-0 mr-0 lh-0 d-none d-xl-block"
-                   title="{{ _("Retour à la page d'accueil") }}"@
-                   href="/" rel="home">
-                    <img src="/images/logo.png" alt="Logo"/>
-                </a>
+    {# <pre>
+    {{  page | dump('\t') }}
+    </pre> #}
+    {# <pre>{{ content | dump('\t') }}</pre> #}
+    <div id="main-content">
+        <div class="bg-primary">
+            <div class="container">
+                {# language menu selection #}
+                <ul class="nav nav-language justify-content-md-end justify-content-around">
+                    {% for locale in locales %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{'active' if locale.current }}" href="{{ locale.url }}">
+                            {% if locale.name == 'Français' %}
+                            <img src="/images/france.png" width="20" alt="france">
+                            {% endif %}
+                            {% if locale.name == 'English' %}
+                            <img src="/images/uk.png" width="20" alt="english">
+                            {% endif %}
+                            {% if locale.name == 'Deutsch' %}
+                            <img src="/images/germany.png" width="20" alt="deutsch">
+                            {% endif %}
+                            {{ locale.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary py-md-4">
+            <div class="container">
+                {# Showing Logo Headline Section #}
+                {{ macro.contents(page.contents['header.row1']) }}
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#top-menu" aria-controls="top-menu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="top-menu">
+                    <ul class="navbar-nav mt-2 mt-lg-0">
+                        {% if sitemap.main %}
+                        {{ macro.menuDesktop(sitemap.main, 1) }}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-                <div class="wrapper-nav-main">
-                    <div class="header-top d-none d-xl-block">
-                        <nav class="navbar-top">
-                            <ul class="navbar flex-sm-row justify-content-end list-unstyled p-0 m-0 js-navbar-width">
-                                {{ macro.menu(sitemap.menutop, 1) }}
-                            </ul>
-                        </nav>
+        <div class="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div class="container-fluid py-5">
+                <div class="justify-content-around row">
+                    <div class="col-auto mb-4 mb-md-0">
+                        {% if logo %}
+                        <img src="{{logo}}" alt="Logo">
+                        {% else %}
+                        <h1 class="text-white">{{headline}}</h1>
+                        {% endif %}
                     </div>
-                    <hr class="d-none d-xl-block" />
-                    <div class="header-main zindex-10 w-100 js-header-main bg-color-white">
-                        <div class="wrapper-nav-large d-flex align-items-center align-items-xl-start justify-content-between">
-                            <a class="navbar-brand p-0 mr-0 lh-0 d-block d-xl-none"
-                               title="{{ _("Retour à la page d'accueil") }}"@
-                               href="/" rel="home">
-                                <img src="/images/logo.png" alt="Logo"/>
-                            </a>
-
-                            <div class="d-flex justify-content-end align-items-center">
-                                <nav class="navbar-main d-none d-xl-block">
-                                    {% if sitemap.main %}
-                                        <ul class="navbar flex-sm-row list-unstyled p-0 m-0 js-navbar-width">
-                                            {{ macro.menu(sitemap.main, 1) }}
-                                        </ul>
-                                    {% endif %}
-                                </nav>
-
-                                <div class="navbar-right d-flex align-items-center zindex-1">
-                                    {#                                <div>#}
-                                    {#                                    <i class="fal fa-search"></i>#}
-                                    {#                                </div>#}
-                                    <button class="d-block d-xl-none burger-nav-button bg-transparent overflow-hidden c-pointer js-burger-nav-button ml-50"
-                                            type="button">
-                                        <ul class="burger-nav-bars position-absolute list-unstyled w-100 h-100 mb-0">
-                                            <li class="burger-nav-bar top position-absolute bg-color-grey-text"></li>
-                                            <li class="burger-nav-bar center position-absolute bg-color-grey-text"></li>
-                                            <li class="burger-nav-bar bottom position-absolute bg-color-grey-text"></li>
-                                        </ul>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div class="col-md-2 text-white mb-5 mb-md-0">
+                        <h4 class="mb-0">{{ _("Liens") }}</h4>
+                        <hr class="hr-custom">
+                        {# footer menu navbar #}
+                        {% if sitemap.main %}
+                        {{ macro.menuFooter(sitemap.main, 1) }}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 text-white">
+                        {# if the footer contact exist #}
+                        {% if page.contents['footer.row1.col3'][0] %}
+                        <h4 class="mb-0">{{ contactHeader }}</h4>
+                        <hr class="hr-custom">
+                        <ul class="list-unstyled mb-0">
+                            {% if contactAddress %}
+                            <li class="mb-2">{{contactAddress}}</li>
+                            {% endif %}
+                            {% if contactPhone %}
+                            <li class="mb-2"><b>Tél. :</b> <a href="tel:{{contactPhone}}">{{contactPhone}}</a></li>
+                            {% endif %}
+                            {% if contactFax %}
+                            <li class="mb-2"><b>Fax. :</b> <a href="tel:{{contactFax}}">{{contactFax}}</a></li>
+                            {% endif %}
+                            {% if contactEmail %}
+                            <li><b>E-mail :</b> <a href="mailto:{{contactEmail}}">{{contactEmail}}</a></li>
+                            {% endif %}
+                            {% endif %}
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </header><!-- .header -->
-
-    <!--[if lt IE 8]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
-            href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <div class="main">
-        {% block content %}
-        {% endblock %}
+            <div class="container-fluid bg-secondary py-3 text-center text-white">
+                <p class="mb-0">
+                    © Copyright {{ content.custom.date | date('YYYY') }} | {{headline}} |
+                    {{ _("Tous droits réservés") }}.
+                </p>
+            </div>
+        </footer>
     </div>
 
-    <footer>
-        Footer
-    </footer>
-</div>
-
-<script src="/js/main.js"></script>
-
 </body>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/js/vendor/jquery/jquery.min.js"></script>
+
+    <script src="/js/main.js"></script>
+
 </html>

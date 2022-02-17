@@ -1,0 +1,11 @@
+// primary background color
+.bg-primary{
+  background-color: $primaryColor!important;
+}
+
+// margin top -50px
+@include media-breakpoint-up(md) {
+  .mt-md--50{
+    margin-top: -50px!important;
+  }
+}
